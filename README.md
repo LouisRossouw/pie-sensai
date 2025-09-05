@@ -18,9 +18,10 @@
 
 ## Other;
 
-- Used arduinio_cli to compile and upload
+- Use arduinio_cli to compile and upload: `make sensai-beacon`
 
 Reminder for self, all of my esp32 c3 boards automatically reset after upload except for 1 board, 
 1 board requires me to first flash it (hold down reset + boot for a few seconds, and let go of reset first before boot), then compile and upload, and finally push reset for it to run the new firmware.
+
 
 
