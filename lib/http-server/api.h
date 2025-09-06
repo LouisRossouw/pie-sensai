@@ -3,11 +3,13 @@
 
 #include "../lights/lights.h"
 #include "../sensors/sensors.h"
+#include "../display/display.h"
 
 #include <WebServer.h>
 
 extern Lighting leds;
 extern Sensors sensors;
+extern Display display;
 
 void handleRoot(WebServer &server);
 void handleHumidity(WebServer &server);

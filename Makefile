@@ -4,6 +4,7 @@
 # FQBN = esp32:esp32:esp32c3
 FQBN=esp32-bluepad32:esp32:lolin_c3_mini
 PORT = COM11
+# PORT = COM6
 BAUD = 115200
 
 # Arduino CLI

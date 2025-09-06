@@ -4,14 +4,16 @@
 
 void handleRoot(WebServer &server)
 {
+    leds.lightupPull(50);
     StaticJsonDocument<200> doc;
     doc["message"] = "Hello from ESP32!";
 
-    leds.lightupPull(50);
+    display.showMessage("Pew pew !!");
 
     String json;
     serializeJson(doc, json);
     server.send(200, "application/json", json);
+    leds.lightupPush(50);
 }
 
 void handleHumidity(WebServer &server)
@@ -40,7 +42,6 @@ void handleHumidity(WebServer &server)
 void handleTemperature(WebServer &server)
 {
     leds.lightupPull(50);
-    Serial.println("--01");
     float temperature = sensors.getTemperature();
 
     StaticJsonDocument<200> doc;

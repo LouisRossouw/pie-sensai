@@ -1,8 +1,6 @@
 #include <WiFi.h>
 #include "connection.h"
 
-#define LED_BUILTIN 8
-
 Connection::Connection(const char *ssid, const char *password, const char *hostname, Lighting *lights)
     : _ssid(ssid), _password(password), _hostname(hostname), _lights(lights) {}
 
@@ -11,8 +9,6 @@ void Connection::begin()
     WiFi.mode(WIFI_STA);
     WiFi.setHostname(_hostname);
     WiFi.begin(_ssid, _password);
-
-    pinMode(LED_BUILTIN, OUTPUT);
 
     Serial.println("Connecting to WiFi");
     while (WiFi.status() != WL_CONNECTED)
@@ -42,7 +38,6 @@ void Connection::loop()
     {
         Serial.println("WiFi disconnected, retrying...");
         WiFi.begin(_ssid, _password);
-        digitalWrite(LED_BUILTIN, LOW);
         delay(10000); // wait 10s before retry
     }
 }

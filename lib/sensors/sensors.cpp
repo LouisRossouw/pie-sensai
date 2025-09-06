@@ -18,6 +18,5 @@ float Sensors::getHumidity()
 
 float Sensors::getTemperature()
 {
-    Serial.println("--02");
     return _dht.readTemperature();
 }
