@@ -4,13 +4,15 @@
 #include "http-server.h"
 #include "sensors.h"
 #include "lights.h"
+#include "display.h"
 
-const char *name = "esp32-sensai";
+const char *name = "esp32-sensai-test";
 
-Lighting leds(0, 1, 2);
+Lighting leds(21, 20, 10, 9);
 HttpServer httpServer;
 Connection net(WIFI_SSID, WIFI_PASSWORD, name, &leds);
-Sensors sensors(3);
+Display display(2, 3, 1); // SDA, SCL
+Sensors sensors(0);
 
 void setup()
 {
@@ -29,6 +31,9 @@ void setup()
 
     // Sensors
     sensors.begin();
+
+    // Display
+    display.begin();
 }
 
 void loop()
@@ -36,4 +41,5 @@ void loop()
     leds.loop();
     net.loop();
     httpServer.loop();
+    display.loop();
 }
