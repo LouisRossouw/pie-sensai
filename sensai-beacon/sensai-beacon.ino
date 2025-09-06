@@ -1,35 +1,35 @@
 #include "lights.h"
 #include "connection.h"
+#include "http-server.h"
 
 #include "secrets.h"
-
-#define LED_BUILTIN 8
 
 const char *name = "esp32-sensai";
 
 Lighting leds(0, 1, 2);
-Connection net(WIFI_SSID, WIFI_PASSWORD, name);
+Connection net(WIFI_SSID, WIFI_PASSWORD, name, &leds);
+HttpServer httpServer;
 
 void setup()
 {
     delay(4000);
     Serial.begin(115200);
-    Serial.print("ESP32 starting");
-
-    Serial.print(WIFI_SSID);
-    Serial.print(WIFI_PASSWORD);
+    Serial.println("ESP32 starting");
 
     // Lights
     leds.begin();
 
-    // // Wifi
+    // Wifi
     net.begin();
     net.printMac();
+
+    // Http server
+    httpServer.begin();
 }
 
 void loop()
 {
-    leds.lightupPull(50);
-    leds.lightupPush(50);
-    // leds.blink(3, 200);
+    leds.loop();
+    net.loop();
+    httpServer.loop();
 }
