@@ -17,6 +17,8 @@ public:
     void blink(int times, int delayMs);
     // void pulse(int delayMs);
 
+    void loop();
+
 private:
     int _pin0;
     int _pin1;

@@ -74,3 +74,9 @@ void Lighting::blink(int times, int delayMs)
 //         delay(delayMs);
 //     }
 // }
+
+void Lighting::loop()
+{
+    // Empty for now.
+    this->blink(1, 200);
+}
