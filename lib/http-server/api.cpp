@@ -14,46 +14,49 @@ void handleRoot(WebServer &server)
     server.send(200, "application/json", json);
 }
 
-// TODO
-
 void handleHumidity(WebServer &server)
 {
-    // float humidity = dht.readHumidity();
+    leds.lightupPull(50);
+    float humidity = sensors.getHumidity();
 
-    // StaticJsonDocument<200> doc;
-    // if (isnan(humidity))
-    // {
-    //     doc["error"] = "Failed to read from DHT sensor!";
-    //     String json;
-    //     serializeJson(doc, json);
-    //     server.send(500, "application/json", json);
-    //     return;
-    // }
+    StaticJsonDocument<200> doc;
+    if (isnan(humidity))
+    {
+        doc["error"] = "Failed to read from DHT sensor!";
+        String json;
+        serializeJson(doc, json);
+        server.send(500, "application/json", json);
+        return;
+    }
 
-    // doc["humidity"] = humidity;
+    doc["humidity"] = humidity;
 
-    // String json;
-    // serializeJson(doc, json);
-    // server.send(200, "application/json", json);
+    String json;
+    serializeJson(doc, json);
+    server.send(200, "application/json", json);
+    leds.lightupPush(50);
 }
 
 void handleTemperature(WebServer &server)
 {
-    // float temperature = dht.readTemperature();
+    leds.lightupPull(50);
+    Serial.println("--01");
+    float temperature = sensors.getTemperature();
 
-    // StaticJsonDocument<200> doc;
-    // if (isnan(temperature))
-    // {
-    //     doc["error"] = "Failed to read from DHT sensor!";
-    //     String json;
-    //     serializeJson(doc, json);
-    //     server.send(500, "application/json", json);
-    //     return;
-    // }
+    StaticJsonDocument<200> doc;
+    if (isnan(temperature))
+    {
+        doc["error"] = "Failed to read from DHT sensor!";
+        String json;
+        serializeJson(doc, json);
+        server.send(500, "application/json", json);
+        return;
+    }
 
-    // doc["temperature"] = temperature;
+    doc["temperature"] = temperature;
 
-    // String json;
-    // serializeJson(doc, json);
-    // server.send(200, "application/json", json);
+    String json;
+    serializeJson(doc, json);
+    server.send(200, "application/json", json);
+    leds.lightupPush(50);
 }
