@@ -14,5 +14,6 @@ extern Display display;
 void handleRoot(WebServer &server);
 void handleHumidity(WebServer &server);
 void handleTemperature(WebServer &server);
+void handleMessage(WebServer &server);
 
 #endif
