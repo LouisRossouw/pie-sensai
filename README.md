@@ -24,7 +24,7 @@
 - Display: pins `2, 3, 1` // SDA, SCL and ground
 
 
-## Other
+## 🐌 Other
 - Create a `secrets.h` header where the .ino files live. `./sensai-beacon/secrets.h`
 - Add WIFI_SSID and WIFI_PASSWORD variables in `secrets.h`, to connect to your wifi.
 
@@ -39,6 +39,7 @@ this specific board requires me to first flash it (hold down reset + boot for a 
 
 Play;
 ![pies](https://github.com/user-attachments/assets/d39e6d7b-e0d5-4c31-91fe-12335591b47c)
+
 
 
 
