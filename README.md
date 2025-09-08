@@ -18,20 +18,20 @@
 - 3 to 4 LEDs for cool incominig / outgoing light effects.
 
 ## 📍 Pins:
-- DHT11 sensor: pin 0
-- Error red Leds: pin 9
-- Notification Leds: pins 21, 20, 10
-- Display: pins 2, 3, 1 // SDA, SCL and ground
+- DHT11 sensor: pin `0`
+- Error red Leds: pin `9`
+- Notification Leds: pins `21, 20, 10`
+- Display: pins `2, 3, 1` // SDA, SCL and ground
 
 
 ## Other
-- Create a secrets.h header where the .ino files live. // ./sensai-beacon/secrets.h
-- Add WIFI_SSID and WIFI_PASSWORD variables in secrets.h, to connect to your wifi.
+- Create a `secrets.h` header where the .ino files live. `./sensai-beacon/secrets.h`
+- Add WIFI_SSID and WIFI_PASSWORD variables in `secrets.h`, to connect to your wifi.
 
 ## 🤖 Compile & upload
-- Uses arduinio_cli to compile and upload
-- If on windows, use git bash in project directory to run "Makefile"
-- Use the commands in the Makefile to compile / upload / monitor to esp32-c3 board. ie; run `make sensai-beacon` in the terminal of the project and it will run the default command found in the Makefile, or `make monitor` etc
+- Uses `arduinio_cli` to compile and upload
+- If on windows, use git bash in project directory to run `./Makefile`
+- Use the commands in the Makefile to compile / upload / monitor to esp32-c3 board. ie; run `make sensai-beacon` in the terminal of the project and it will build for `sensai-beacon.ino`, or `make monitor` etc
 
 ## Reminder for self;
 - all of my esp32 c3 boards automatically reset after upload except for one board, 
@@ -39,6 +39,7 @@ this specific board requires me to first flash it (hold down reset + boot for a 
 
 Play;
 ![pies](https://github.com/user-attachments/assets/d39e6d7b-e0d5-4c31-91fe-12335591b47c)
+
 
 
 
