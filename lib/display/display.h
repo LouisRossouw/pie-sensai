@@ -12,7 +12,7 @@ public:
     Display(int pinSDA, int pinSCL, int textSize = 1);
 
     void begin();
-    void showMessage(const String &msg);
+    void showMessage(const String &msg, int textSize = -1);
     void loop();
 
 private:

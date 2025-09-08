@@ -18,14 +18,14 @@ Display::Display(int pinSDA, int pinSCL, int textSize)
     : _pinSDA(pinSDA),
       _pinSCL(pinSCL),
       _textSize(textSize),
-      _display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire) // construct here
+      _display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire)
 {
 }
 
 void Display::begin()
 {
     // Initialize I2C with explicit pins
-    Wire.begin(_pinSDA, _pinSCL); // SDA=2, SCL=3  (adjust to your wiring!)
+    Wire.begin(_pinSDA, _pinSCL); // SDA=2, SCL=3
 
     // Initialize OLED
     if (!_display.begin(SSD1306_SWITCHCAPVCC, OLED_ADDR))
@@ -35,24 +35,24 @@ void Display::begin()
             ; // Don’t proceed, loop forever
     }
 
-    _display.clearDisplay();
-
-    // Set text size, color, position
-    _display.setTextSize(_textSize);
-    _display.setTextColor(SSD1306_WHITE);
-    _display.setCursor(0, 0);
-
-    // Print something
-    showMessage("Hello, ESP32!");
-    _display.display(); // Push to screen
+    showMessage("Hello!", 3);
 }
 
-void Display::showMessage(const String &msg)
+void Display::showMessage(const String &msg, int textSize)
 {
+    // Fallback
+    if (textSize <= 0)
+    {
+        textSize = _textSize;
+    }
+
+    // Switches display on if it was off
+    _display.ssd1306_command(SSD1306_DISPLAYON);
+
     Serial.println("OLED update: " + msg);
 
     _display.clearDisplay();
-    _display.setTextSize(_textSize);
+    _display.setTextSize(textSize);
     _display.setTextColor(SSD1306_WHITE);
 
     int16_t x1, y1;
@@ -77,7 +77,11 @@ void Display::loop()
 {
     if (millis() - lastUpdate > screenTimeout)
     {
-        _display.clearDisplay();
-        _display.display();
+        // Clears screen
+        // _display.clearDisplay();
+        // _display.display();
+
+        // Switches display off.
+        _display.ssd1306_command(SSD1306_DISPLAYOFF);
     }
 }
