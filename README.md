@@ -7,7 +7,7 @@
 - Unintentionally ~ intended to integrate into [Home-Pie](https://github.com/LouisRossouw/home-pie-desktop) and [API](https://github.com/LouisRossouw/home-pie-server), ie; i wasn't planning on building this, but here it is 😆, It will display data in a graph and occasionally send data to the beacon with the oled monitor.
 - [Mr-ping-ping](https://github.com/LouisRossouw/mr-ping-ping) is being used to fetch and record data from these beacons.
 
-# Setup;
+# Setup
 
 ## 🍦 Parts
 - Esp32 c3 super mini
@@ -17,7 +17,7 @@
 - DHT11 temperature/humidity sensor
 - 3 to 4 LEDs for cool incominig / outgoing light effects.
 
-## 📍 Pins:
+## 📍 Pins
 - DHT11 sensor: pin `0`
 - Error red Leds: pin `9`
 - Notification Leds: pins `21, 20, 10`
@@ -33,12 +33,13 @@
 - If on windows, use git bash in project directory to run `./Makefile`
 - Use the commands in the Makefile to compile / upload / monitor to esp32-c3 board. ie; run `make sensai-beacon` in the terminal of the project and it will build for `sensai-beacon.ino`, or `make monitor` etc
 
-## Reminder for self;
+## Reminder for self
 - all of my esp32 c3 boards automatically reset after upload except for one board, 
 this specific board requires me to first flash it (hold down reset + boot for a few seconds, and let go of reset first before boot), then compile and upload, and finally push reset for it to run the new firmware.
 
 Play;
 ![pies](https://github.com/user-attachments/assets/d39e6d7b-e0d5-4c31-91fe-12335591b47c)
+
 
 
 
