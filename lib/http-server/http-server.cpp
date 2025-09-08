@@ -33,4 +33,6 @@ void HttpServer::routes()
               { handleHumidity(server); });
     server.on("/temperature", [this]()
               { handleTemperature(server); });
+    server.on("/message", [this]()
+              { handleMessage(server); });
 }
