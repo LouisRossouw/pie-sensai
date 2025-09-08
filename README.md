@@ -1,7 +1,7 @@
 (Work in progress)
 
 # 🥧 Pie Sensai
-### Pie Sensai is a collection of .. *beacons .. for a lack of a better word.
+### Currently Pie Sensai is a collection of .. *beacons .. for a lack of a better word.
 
 - These little beacons sit in different parts of the house, connect to the local network via wifi and expose an API for other devices/apps to retrieve the environments temperature and humidity.
 - Unintentionally ~ intended to integrate into [Home-Pie](https://github.com/LouisRossouw/home-pie-desktop) and [API](https://github.com/LouisRossouw/home-pie-server), ie; i wasn't planning on building this, but here it is 😆, It will display data in a graph and occasionally send data to the beacon with the oled monitor.
@@ -16,15 +16,24 @@
 - Oled display - BDD 12C 1.3in, 128X64
 - DHT11 temperature/humidity sensor
 
-## Other;
+## 📍 Pins:
+- notification Leds: pins 21, 20, 10
+- error red Leds: pin 9
+- Display: pins 2, 3, 1 // SDA, SCL and ground
+- DHT11 sensor: pin 0
 
-- Use arduinio_cli to compile and upload: `make sensai-beacon`
+## 🤖 Compile & upload
+- Uses arduinio_cli to compile and upload
+- If on windows, use git bash in project directory to run "Makefile"
+- use the commands in the Makefile to compile / upload / monitor to esp32-c3 board. ie; run `make sensai-beacon` in the terminal of the project and it will run the default command found in the Makefile, or `make monitor` etc
+
+## Other;
 
 Reminder for self, all of my esp32 c3 boards automatically reset after upload except for one board, 
 this specific board requires me to first flash it (hold down reset + boot for a few seconds, and let go of reset first before boot), then compile and upload, and finally push reset for it to run the new firmware.
 
-
 ![pies](https://github.com/user-attachments/assets/d39e6d7b-e0d5-4c31-91fe-12335591b47c)
+
 
 
 
