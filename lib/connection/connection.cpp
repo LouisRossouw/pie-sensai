@@ -1,6 +1,12 @@
 #include <WiFi.h>
 #include "connection.h"
 
+unsigned long lastReconnectAttempt = 0;
+const unsigned long reconnectInterval = 10000; // 10 seconds
+
+bool startUpConnected = false;
+bool hasPlayedConnected = false;
+
 Connection::Connection(const char *ssid, const char *password, const char *hostname, Lighting *lights)
     : _ssid(ssid), _password(password), _hostname(hostname), _lights(lights) {}
 
@@ -13,16 +19,10 @@ void Connection::begin()
     Serial.println("Connecting to WiFi");
     while (WiFi.status() != WL_CONNECTED)
     {
-        if (_lights)
-        {
-            _lights->blink(1, 50); // blink LED while waiting
-        }
-        else
-        {
-            delay(500); // fallback
-        }
+        startUpConnected = false;
         Serial.print(".");
     }
+    startUpConnected = true;
     Serial.println(" connected!");
 }
 
@@ -34,10 +34,36 @@ void Connection::printMac()
 
 void Connection::loop()
 {
+
     if (WiFi.status() != WL_CONNECTED)
     {
-        Serial.println("WiFi disconnected, retrying...");
-        WiFi.begin(_ssid, _password);
-        delay(10000); // wait 10s before retry
+        // blink only when disconnected
+        _lights->disconnected(1, 100);
+        _lights->builtInLedOff();
+
+        hasPlayedConnected = false;
+
+        unsigned long now = millis();
+
+        // check if enough time has passed since last attempt
+        if (now - lastReconnectAttempt >= reconnectInterval)
+        {
+            _lights->reconnectAttempt(2, 100);
+
+            lastReconnectAttempt = now;
+            Serial.println("WiFi disconnected, retrying...");
+            WiFi.begin(_ssid, _password);
+        }
+    }
+    else
+    {
+        _lights->off();
+        _lights->builtInblink(1, 1000, 100);
+
+        if (!hasPlayedConnected)
+        {
+            _lights->connected(50);
+            hasPlayedConnected = true;
+        }
     }
 }
