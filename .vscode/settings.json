@@ -23,6 +23,9 @@
     "netfwd": "cpp",
     "socket": "cpp",
     "timer": "cpp",
-    "tuple": "cpp"
+    "tuple": "cpp",
+    "compare": "cpp",
+    "cstdint": "cpp",
+    "system_error": "cpp"
   }
 }
