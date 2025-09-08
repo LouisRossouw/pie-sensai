@@ -34,16 +34,17 @@
 - Use the commands in the Makefile to compile / upload / monitor to esp32-c3 board. ie; run `make sensai-beacon` in the terminal of the project and it will build for `sensai-beacon.ino`, or `make monitor` etc
 
 ## Use
-- open browser
+- Open browser
 - To send a message and display it on the oled: `localUrl/message?text=hello%how%are%you&textSize=3`
-- return and display temperature: `localUrl/temperature`
-- return and display humidity: `localUrl/humidity`
+- Return and display temperature: `localUrl/temperature`
+- Return and display humidity: `localUrl/humidity`
 
 ## Reminder for self
 - all of my esp32 c3 boards automatically reset after upload except for one board, 
 this specific board requires me to first flash it (hold down reset + boot for a few seconds, and let go of reset first before boot), then compile and upload, and finally push reset for it to run the new firmware.
 
 ![pies](https://github.com/user-attachments/assets/d39e6d7b-e0d5-4c31-91fe-12335591b47c)
+
 
 
 
