@@ -29,6 +29,62 @@ void Lighting::begin()
     digitalWrite(LED_BUILTIN, LOW);
 }
 
+void Lighting::connected(int delayMs)
+{
+    digitalWrite(_pin2, HIGH);
+    delay(delayMs);
+    digitalWrite(_pin2, LOW);
+    delay(delayMs);
+    digitalWrite(_pin1, HIGH);
+    delay(delayMs);
+    digitalWrite(_pin1, LOW);
+    delay(delayMs);
+    digitalWrite(_pin0, HIGH);
+    delay(delayMs);
+    digitalWrite(_pin0, LOW);
+    delay(delayMs);
+
+    digitalWrite(_pin0, HIGH);
+    delay(delayMs);
+    digitalWrite(_pin0, LOW);
+    delay(delayMs);
+    digitalWrite(_pin1, HIGH);
+    delay(delayMs);
+    digitalWrite(_pin1, LOW);
+    delay(delayMs);
+    digitalWrite(_pin2, HIGH);
+    delay(delayMs);
+    digitalWrite(_pin2, LOW);
+    delay(delayMs);
+
+    digitalWrite(_pin0, LOW);
+    digitalWrite(_pin1, LOW);
+    digitalWrite(_pin2, LOW);
+    delay(delayMs);
+    digitalWrite(_pin0, HIGH);
+    digitalWrite(_pin1, HIGH);
+    digitalWrite(_pin2, HIGH);
+    delay(delayMs);
+    digitalWrite(_pin0, LOW);
+    digitalWrite(_pin1, LOW);
+    digitalWrite(_pin2, LOW);
+    delay(delayMs);
+    digitalWrite(_pin0, LOW);
+    digitalWrite(_pin1, LOW);
+    digitalWrite(_pin2, LOW);
+    delay(delayMs);
+    digitalWrite(_pin0, HIGH);
+    digitalWrite(_pin1, HIGH);
+    digitalWrite(_pin2, HIGH);
+
+    delay(delayMs);
+    digitalWrite(_pin0, LOW);
+    delay(delayMs);
+    digitalWrite(_pin1, LOW);
+    delay(delayMs);
+    digitalWrite(_pin2, LOW);
+}
+
 void Lighting::lightupPull(int delayMs)
 {
     digitalWrite(_pin0, HIGH);
@@ -72,15 +128,31 @@ void Lighting::blink(int times, int delayMs)
     }
 }
 
-void Lighting::builtInblink(int times, int delayMs)
+void Lighting::reconnectAttempt(int times, int delayMs)
+{
+    for (int i = 0; i < times; i++)
+    {
+        digitalWrite(_pin1, HIGH);
+        delay(delayMs);
+        digitalWrite(_pin1, LOW);
+        delay(delayMs);
+    }
+}
+
+void Lighting::builtInblink(int times, int highDelayMs, int lowDelayMs)
 {
     for (int i = 0; i < times; i++)
     {
         digitalWrite(LED_BUILTIN, HIGH);
-        delay(delayMs);
+        delay(highDelayMs);
         digitalWrite(LED_BUILTIN, LOW);
-        delay(delayMs);
+        delay(lowDelayMs);
     }
+}
+
+void Lighting::builtInLedOff()
+{
+    digitalWrite(LED_BUILTIN, HIGH);
 }
 
 void Lighting::disconnected(int times, int delayMs)
@@ -94,19 +166,21 @@ void Lighting::disconnected(int times, int delayMs)
     }
 }
 
-// void Lighting::pulse(int delayMs)
-// {
-//     for (int i = 0; i < 255; i++)
-//     {
-//         analogWrite(_pin, i);
-//         delay(delayMs);
-//     }
-//     for (int i = 255; i > 0; i--)
-//     {
-//         analogWrite(_pin, i);
-//         delay(delayMs);
-//     }
-// }
+void Lighting::error(int times, int delayMs)
+{
+    for (int i = 0; i < times; i++)
+    {
+        digitalWrite(_pin3, HIGH);
+        delay(delayMs);
+        digitalWrite(_pin3, LOW);
+        delay(delayMs);
+    }
+}
+
+void Lighting::off()
+{
+    digitalWrite(_pin3, LOW);
+}
 
 void Lighting::loop()
 {
