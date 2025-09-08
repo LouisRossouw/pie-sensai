@@ -3,7 +3,7 @@
 # 🥧 Pie Sensai
 ### Pie Sensai is a collection of .. *beacons .. for a lack of a better word.
 
-- These little beacons sit in different parts of the house, connect to the local network via wifi and expose an API for other devices to retrieve the environments temperature and humidity.
+- These little beacons sit in different parts of the house, connect to the local network via wifi and expose an API for other devices/apps to retrieve the environments temperature and humidity.
 - Unintentionally ~ intended to integrate into [Home-Pie](https://github.com/LouisRossouw/home-pie-desktop) and [API](https://github.com/LouisRossouw/home-pie-server), ie; i wasn't planning on building this, but here it is 😆, It will display data in a graph and occasionally send data to the beacon with the oled monitor.
 - [Mr-ping-ping](https://github.com/LouisRossouw/mr-ping-ping) is being used to fetch and record data from these beacons.
 
@@ -25,6 +25,7 @@ this specific board requires me to first flash it (hold down reset + boot for a 
 
 
 ![pies](https://github.com/user-attachments/assets/d39e6d7b-e0d5-4c31-91fe-12335591b47c)
+
 
 
 
