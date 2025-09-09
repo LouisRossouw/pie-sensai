@@ -2,6 +2,9 @@
 #define CONNECTION_H
 
 #include "../lights/lights.h"
+#include "../display/display.h"
+
+extern Display display;
 
 class Connection
 {

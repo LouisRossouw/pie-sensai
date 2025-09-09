@@ -1,6 +1,7 @@
 #include <WiFi.h>
 #include "connection.h"
 
+int totalReconnectAttempts = 0;
 unsigned long lastReconnectAttempt = 0;
 const unsigned long reconnectInterval = 10000; // 10 seconds
 
@@ -38,7 +39,23 @@ void Connection::loop()
     if (WiFi.status() != WL_CONNECTED)
     {
         // blink only when disconnected
-        _lights->disconnected(1, 100);
+        if (totalReconnectAttempts < 10)
+        {
+            _lights->disconnected(1, 50);
+        }
+        else if (totalReconnectAttempts < 20)
+        {
+            _lights->disconnected(1, 100);
+        }
+        else if (totalReconnectAttempts < 100)
+        {
+            _lights->disconnected(1, 1000);
+        }
+        else
+        {
+            _lights->disconnected(1, 2000);
+        }
+
         _lights->builtInLedOff();
 
         hasPlayedConnected = false;
@@ -48,10 +65,18 @@ void Connection::loop()
         // check if enough time has passed since last attempt
         if (now - lastReconnectAttempt >= reconnectInterval)
         {
-            _lights->reconnectAttempt(2, 100);
+            _lights->reconnectAttempt(1, 50);
+            totalReconnectAttempts += 1;
+
+            if (totalReconnectAttempts <= 10)
+            {
+                String message = "Retry " + String(totalReconnectAttempts);
+                display.showMessage(message, 2);
+            }
 
             lastReconnectAttempt = now;
             Serial.println("WiFi disconnected, retrying...");
+
             WiFi.begin(_ssid, _password);
         }
     }
@@ -64,6 +89,7 @@ void Connection::loop()
         {
             _lights->connected(50);
             hasPlayedConnected = true;
+            display.showMessage("Connected!", 2);
         }
     }
 }
