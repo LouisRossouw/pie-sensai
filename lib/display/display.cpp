@@ -36,6 +36,7 @@ void Display::begin()
     }
 
     showMessage("Hello!", 3);
+    delay(2000);
 }
 
 void Display::showMessage(const String &msg, int textSize)
