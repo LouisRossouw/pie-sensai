@@ -35,4 +35,6 @@ void HttpServer::routes()
               { handleTemperature(server); });
     server.on("/message", [this]()
               { handleMessage(server); });
+    server.on("/error", [this]()
+              { handleError(server); });
 }

@@ -98,3 +98,34 @@ void handleMessage(WebServer &server)
         leds.error(5, 50);
     }
 }
+
+// For external devices to display an error.
+void handleError(WebServer &server)
+{
+    if (server.hasArg("text"))
+    {
+
+        String message = server.arg("text");
+        String txtSizeStr = server.arg("textSize");
+
+        // If txtSizeStr is empty; "", .toInt will result in 0,
+        // and showMessage will fallback to default _textSize
+        int txtSize = txtSizeStr.toInt();
+
+        // Print to serial
+        Serial.print("Received message: ");
+        Serial.println(message);
+
+        // Show on OLED
+        display.showMessage(message, txtSize);
+        server.send(200, "application/json", "{\"status\":\"ok\",\"message\":\"" + message + "\"}");
+
+        leds.reconnectAttempt(2, 100);
+        leds.error(10, 50);
+    }
+    else
+    {
+        server.send(400, "application/json", "{\"error\":\"Missing 'text' parameter\"}");
+        leds.error(5, 50);
+    }
+}
