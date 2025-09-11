@@ -85,6 +85,8 @@ void Connection::loop()
         _lights->off();
         _lights->builtInblink(1, 1000, 100);
 
+        totalReconnectAttempts = 0;
+
         if (!hasPlayedConnected)
         {
             _lights->connected(50);
