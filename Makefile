@@ -3,7 +3,6 @@
 # Board / port
 # FQBN = esp32:esp32:esp32c3
 FQBN=esp32-bluepad32:esp32:lolin_c3_mini
-# PORT = COM11
 PORT = COM6
 BAUD = 115200
 
@@ -21,7 +20,7 @@ TEST_SKETCH = test/test.ino
 all: sensai sensai-monitor
 
 sensai-beacon: build-sensai-beacon upload-sensai monitor
-sensai-monitor: build-sensai-monitor upload-sensai monitor
+sensai-monitor: build-sensai-monitor upload-monitor monitor
 
 # --- Build targets ---
 build-sensai-beacon:
