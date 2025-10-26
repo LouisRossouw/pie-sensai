@@ -32,8 +32,8 @@ void handleHumidity(WebServer &server)
         return;
     }
 
-    String message = "Humidity: " + String(humidity, 1) + "%";
-    display.showMessage(message);
+    String message = "H:" + String(humidity, 1) + "%";
+    display.showMessage(message, 3);
 
     doc["humidity"] = humidity;
 
@@ -59,8 +59,8 @@ void handleTemperature(WebServer &server)
         return;
     }
 
-    String message = "Temp: " + String(temperature, 1) + "%";
-    display.showMessage(message);
+    String message = "T:" + String(temperature, 1) + "%";
+    display.showMessage(message, 3);
 
     doc["temperature"] = temperature;
 
