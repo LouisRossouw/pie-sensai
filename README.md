@@ -16,7 +16,7 @@
 - 3 to resistors
 - 3D printed frame
 - Oled display - BDD 12C 1.3in, 128X64
-- DHT11 temperature/humidity sensor
+- DHT22 temperature/humidity sensor
 - 3 to 4 LEDs for cool incominig / outgoing light effects.
 
 ## 📍 Pins
@@ -44,6 +44,7 @@
 ## Reminder for self
 - all of my esp32 c3 boards automatically reset after upload except for one board, 
 this specific board requires me to first flash it (hold down reset + boot for a few seconds, and let go of reset first before boot), then compile and upload, and finally push reset for it to run the new firmware.
+
 
 
 
