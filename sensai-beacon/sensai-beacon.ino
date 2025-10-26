@@ -1,4 +1,5 @@
 #include "secrets.h"
+#include "esp_bt.h"
 
 #include "connection.h"
 #include "http-server.h"
@@ -18,6 +19,13 @@ void setup()
 {
     Serial.begin(115200);
     Serial.println("ESP32 starting");
+
+    // Disable Bluetooth
+    if (esp_bt_controller_get_status() == ESP_BT_CONTROLLER_STATUS_ENABLED)
+    {
+        esp_bt_controller_disable();
+        esp_bt_controller_deinit();
+    }
 
     // Wifi
     net.begin();
