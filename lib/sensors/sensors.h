@@ -7,7 +7,7 @@
 class Sensors
 {
 public:
-    Sensors(int dhtPin, uint8_t sensorType = DHT11); // Or DHT22
+    Sensors(int dhtPin, uint8_t sensorType = DHT22); // DHT11 Or DHT22
 
     void begin();
     float getHumidity();
